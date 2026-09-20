@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Niña Hermosa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap');
+
+        body {
+            background-color: #fffde7;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* --- Texto Superior --- */
+        .text-container {
+            position: relative;
+            text-align: center;
+            padding-top: 2vh;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .main-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #fbc02d;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            animation: fadeIn 2s ease-out;
+        }
+
+        .personal-message {
+            font-size: 1.4rem;
+            color: #5d4037;
+            line-height: 1.4;
+            margin-top: 10px;
+            max-width: 85%;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards 1s;
+        }
+
+        /* --- El Jardín --- */
+        .garden {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            align-items: flex-end;
+            padding-bottom: 2vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        .lily {
+            position: relative;
+            transform-origin: bottom center;
+            animation: sway 6s ease-in-out infinite;
+        }
+
+        .l1 { transform: scale(1); }
+        .l2 { animation-delay: 1s; transform: scale(0.85); }
+        .l3 { animation-delay: 2s; transform: scale(1.15); }
+        .l4 { animation-delay: 0.5s; transform: scale(0.75); }
+        .l5 { animation-delay: 1.5s; transform: scale(1); }
+
+        /* --- La Flor --- */
+        .flower-head {
+            position: absolute;
+            top: -400px;
+            left: 100%;
+            margin-left: -60px;
+            width: 110px;
+            height: 100px;
+            z-index: 8;
+        }
+
+        .tepal {
+            position: absolute;
+            width: 35px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 20%, #fff9c4 10%, #ffeb3b 60%, #f9a825 100%);
+            border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+            transform-origin: bottom center;
+            left: 50%;
+            margin-left: -20px;
+            top: 1px;
+            box-shadow: inset 2px 3px 10px rgba(0,0,0,0.15), inset -2px -2px 10px rgba(255,255,255,0.3);
+        }
+
+        .tepal.inner { z-index: 3; filter: brightness(105%); }
+        .tepal.outer { z-index: 2; filter: brightness(95%); }
+
+        .t1 { transform: rotate(15deg); }
+        .t2 { transform: rotate(75deg); filter: brightness(90%); }
+        .t3 { transform: rotate(135deg); }
+        .t4 { transform: rotate(195deg); filter: brightness(90%); }
+        .t5 { transform: rotate(255deg); }
+        .t6 { transform: rotate(315deg); filter: brightness(90%); }
+
+        .center-group {
+            position: absolute;
+            width: 28px;
+            height: 20px;
+            top: 72px;
+            left: 50%;
+            margin-left: -10px;
+            z-index: 50;
+        }
+
+        .center-circle {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #8d6e63 20%, #5d4037 80%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .stem {
+            position: absolute;
+            width: 10px;
+            height: 350px;
+            background: linear-gradient(#4caf50, #2e7d32);
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            left: 50%;
+            margin-left: -5px;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        /* --- Corazones --- */
+        .heart-particle {
+            position: absolute;
+            color: #ffb74d;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2.5deg); }
+            50% { transform: rotate(2.5deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(0.5); opacity: 0; }
+        }
+
+        /* --- Control de Música --- */
+        #music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(251, 192, 45, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        #music-control:hover { transform: scale(1.1); }
+        #music-icon { font-size: 24px; }
+    </style>
+</head>
+<body>
+
+    <div id="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="text-container">
+        <h1 class="main-title">Un ramito de lirios</h1>
+        <p class="personal-message">
+            Para ti, amiga 🌻 <br>ha pasado un buen tiempo desde la última vez que nos vimos y hablamos, <br> 
+           pero eso no significa que haya olvidado lo especial que eres para mí. <br>
+           A veces la vida nos lleva por caminos diferentes y hace que perdamos un poco el contacto, <br>
+            pero hay amistades que, aunque pase el tiempo, siguen teniendo un lugar bonito en el corazón. <br>
+            Quería darte estas flores como un pequeño detalle para recordarte que te aprecio muchísimo y que me alegra haber compartido tantos momentos contigo.<br>
+            Espero que estés muy bien, que sigas sonriendo y que la vida te regale muchas cosas bonitas.
+        </p>
+    </div>
+
+    <div class="garden">
+        <div class="lily l1"><div class="flower-head"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem"></div></div>
+        <div class="lily l2"><div class="flower-head"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem" style="height: 280px;"></div></div>
+        <div class="lily l3"><div class="flower-head" style="top: -410px;"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem" style="height: 400px;"></div></div>
+        <div class="lily l4"><div class="flower-head" style="top: -330px;"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem" style="height: 320px;"></div></div>
+        <div class="lily l5"><div class="flower-head"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem"></div></div>
+    </div>
+
+    <script>
+        // Lógica de los corazones
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + "vw";
+            const size = Math.random() * 20 + 10 + "px";
+            heart.style.fontSize = size;
+            const duration = Math.random() * 5 + 4 + "s";
+            heart.style.animationDuration = duration;
+            heart.style.opacity = (Math.random() * 0.5 + 0.3).toString();
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 9000); 
+        }
+        setInterval(createHeart, 300);
+
+        // Lógica de la música
+        const music = document.getElementById('background-music');
+        const icon = document.getElementById('music-icon');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().catch(e => console.log("Error al reproducir:", e));
+                icon.innerHTML = '⏸️'; 
+            } else {
+                music.pause();
+                icon.innerHTML = '🎵'; 
+            }
+        }
+    </script>
+</body>
+</html>
